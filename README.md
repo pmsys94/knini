@@ -12,6 +12,16 @@ Compile (if needed) and run
 make run
 ```
 
+Debug build
+```
+make debug=1 [run]
+```
+
+Debug build and run call gdb with test app
+```
+make debug=1 [gdbrun]
+```
+
 Clean project folder by deleting object files
 ```
 make clean
