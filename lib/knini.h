@@ -1,5 +1,6 @@
 #ifndef KNINI_H
 #define KNINI_H
+#include <string.h>
 #include "../knsll.h"
 #include "iniparsefuncs.h"
 
