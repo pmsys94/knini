@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "knini.h"
+#include "lib/knini.h"
 
 void showMenu();
 void cmdUsage();
