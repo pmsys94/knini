@@ -1,8 +1,13 @@
 #include "knini.h"
 
-int getinisec(char* filename, unsigned int max, char* sections[]){
-	int count = 0;
-	unsigned int writeindex = 0;
+llist getinisec(char* filename){
+	FILE fp = fopen(filename, "r");
+	if (fp == NULL) return NULL;
+	llist secstore = newlist(&nocompare);
+	if (secstore == NULL){
+		free(fp);
+		return NULL;
+	}
 	
-	return count;
+	return secstore;
 }

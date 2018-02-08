@@ -3,6 +3,6 @@
 
 #define 0.1
 
-	enum {MAX_ENTRY = 1024};
+	
 
 #endif
