@@ -5,7 +5,7 @@
 #include "knsll/knsll.h"
 #include "iniparsefuncs.h"
 
-#define verKNINI 0.1
+#define verKNINI 0.2
 
 // Begin interface function prototypes
 

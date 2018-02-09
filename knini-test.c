@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "lib/knini.h"
+#include "testfuncs.h"
 
 void showMenu();
 void cmdUsage();
@@ -31,19 +31,19 @@ int main(int argc, char* argv[]){
 			printf("\n\n");
 			showMenu();
 			printf("choice: ");
-			scanf("%d", &menupoint);
+			if(scanf("%d", &menupoint) == 0) fprintf(stderr, "Menu choice was not a vaild input\n");
 			switch(menupoint){
 			case 0:
 				break;
 			case 1: {
 				printf("Please enter fileme: ");
-				scanf("%ms", &inifile);
+				if(scanf("%ms", &inifile) == 0) fprintf(stderr, "Ini file string can not been read\n");
 				freeName++;
 				printf("Your enter was: \"%s\"\n", inifile);
 				break;
 				}
 			case 2: {
-								
+				printSections(inifile);				
 				break;
 				}
 			default: {

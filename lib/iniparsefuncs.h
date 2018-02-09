@@ -1,7 +1,7 @@
 #ifndef INIPARSEFUNCS_H
 #define INIPARSEFUNCS_H
 
-#define verIPF 0.1
+#define verIPF 0.2
 
 #include "osmak.h"
 #include <stdio.h>

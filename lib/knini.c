@@ -30,3 +30,7 @@ llist getinisec(char* filename){
 }
 
 
+int nocompare(void* key1, void* key2){
+	if(key1 == key2) return 0;
+	return 0;
+}
