@@ -5,8 +5,20 @@ else
 	CFLAGS += -O3
 endif
 
+ifdef os
+	OSMAK = -Dos=${os}
+endif
+
+incdir = lib
+lib = ${incdir}/knini.o
+list = ${incdir}/knsll/knsll.o ${incdir}/knsll/knsllnode.o
+obj =  ${lib} ${list}
+
 knini-test: knini-test.o knini.o
-	${CC} ${CFLAGS} $+ ${OUTPUT_OPTION}
+	${CC} ${CFLAGS} $< ${obj} ${OUTPUT_OPTION}
+
+knini.o: ${obj} 
+	cd lib; ${MAKE} knini.o "CFLAGS=${CFLAGS}" "os=${os}"
 
 run: knini-test
 	./$<
@@ -15,4 +27,4 @@ gdbrun: knini-test
 	gdb ./$<
 
 clean:
-	${RM} *.o *.out knini-test
+	${RM} *.o *.out knini-test; cd lib; ${MAKE} clean

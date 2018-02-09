@@ -3,14 +3,16 @@
 
 #define 0.1
 
-#define tux 2
-#define windows 4
-#define os = tux
+#include "osmak.h"
 
 #if os = tux
 #define _isNewLine(a,b) isNewLine(a)
 #elif os = windows
 #define _isNewLine(a,b) isNewLine(a,b)
+#elif os = mac
+#define _isNewLine(a,b) isNewLine(a)
+#else
+#error "OS makro not specified"
 #endif
 
 #include <string.h>
@@ -22,6 +24,8 @@
 	int isNewLine(char c);
 	#elif os = windows 
 	int isNewLine(char c1, char c2);
+	#elif os = mac
+	int isNewLine(char c);
 	#endif
 	// end newline check funtion deklarations
 #endif

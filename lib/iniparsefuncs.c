@@ -28,4 +28,9 @@ int isNewLine(char c1, char c2){
 	if(c1 == '\r') && (c2 == '\n') return 1;
 	return 0;
 }
+#elif os = mac
+int isNewLine(char c){
+	if(c == '\n') || (c == '\r') return 1;
+	return 0;
+}
 #endif
