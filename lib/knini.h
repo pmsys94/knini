@@ -1,10 +1,11 @@
 #ifndef KNINI_H
 #define KNINI_H
+#include <stdio.h>
 #include <string.h>
 #include "knsll/knsll.h"
 #include "iniparsefuncs.h"
 
-#define ver 0.1
+#define verKNINI 0.1
 
 // Begin interface function prototypes
 

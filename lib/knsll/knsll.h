@@ -26,7 +26,7 @@
 #ifndef KNSLL_H
 #define KNSLL_H
 
-#define ver 1.0
+#define verKNSLL 1.1
 
 	#include <stdio.h>
 	#include "knsllnode.h"

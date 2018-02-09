@@ -1,11 +1,9 @@
-ifndef CFLAGS
-	CFLAGS += -W -Wall
-endif
+CFLAGS += -W -Wall
 
 ifdef debug
 	CFLAGS += -DDEBUG -ggdb
 else
-	CFLAGS += -O3
+	CFLAGS += -Werror -O3
 endif
 
 ifdef os
@@ -15,11 +13,17 @@ endif
 incdir = knsll
 list = ${incdir}/knsll.o ${incdir}/knsllnode.o
 
-knini: knini.o ${list}
-	${CC} ${CFLAGS} $+ ${OUTPUT_OPTION}
+knini: knini.o listobj
+	${CC} ${CFLAGS} $< ${list} ${OUTPUT_OPTION}
 
-knini.o: ${list} 
-	${CC} -c ${CFLAGS} $< -o $@
+knini.o: listobj iniparsefuncs.o
+	${CC} -c ${CFLAGS} ${OSMAK} knini.c -o $@
+
+iniparsefuncs.o: iniparsefuncs.c
+	${CC} -c ${CFLAGS} ${OSMAK} $< -o $@
+
+listobj: 
+	cd knsll; ${MAKE} knsll.o "debug=${debug}"
 
 clean:
 	${RM} *.o *.out; cd knsll; ${MAKE} clean

@@ -1,7 +1,7 @@
 #include "knini.h"
 
 llist getinisec(char* filename){
-	FILE fp = fopen(filename, "r");
+	FILE* fp = fopen(filename, "r");
 	if (fp == NULL) return NULL;
 	llist secstore = newlist(&nocompare);
 	if (secstore == NULL){
@@ -10,7 +10,7 @@ llist getinisec(char* filename){
 	}
 	char* readline = NULL;
 	int readchars = 0;
-	while((readchars = readToRelevant(fp, readline))){
+	while((readchars = readToRelevant(fp, &readline))){
 		if(*readline == '['){
 			char* secstr = readline + 1;
 			secstr = strndup(secstr, readchars - 2);

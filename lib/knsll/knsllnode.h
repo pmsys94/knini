@@ -1,8 +1,6 @@
 #ifndef KNSLLNODE_H
 #define KNSLLNODE_H
 
-#define ver 1.0
-
 	#include <stdio.h>
 	#include <stdlib.h>
 	typedef struct listnode *lnode;

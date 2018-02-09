@@ -1,18 +1,16 @@
-ifndef CFLAGS
-	CFLAGS += -W -Wall
-endif
+CFLAGS += -c -W -Wall
 
 ifdef debug
 	CFLAGS += -DDEBUG -ggdb
 else
-	CFLAGS += -O3
+	CFLAGS += -Werror -O3
 endif
 
 knsll.o: knsllnode.o knsll.c
-	${CC} -c ${CFLAGS} knsll.c -o $@
+	${CC} ${CFLAGS} knsll.c -o $@
 
 knsllnode.o: knsllnode.c 
-	${CC} -c ${CFLAGS} $< -o $@
+	${CC} ${CFLAGS} $< -o $@
 
 clean:
 	${RM} *.o *.out

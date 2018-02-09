@@ -1,8 +1,9 @@
 CFLAGS += -W -Wall
+
 ifdef debug
 	CFLAGS += -DDEBUG -ggdb
 else
-	CFLAGS += -O3
+	CFLAGS += -Werror -O3
 endif
 
 ifdef os
@@ -18,7 +19,7 @@ knini-test: knini-test.o knini.o
 	${CC} ${CFLAGS} $< ${obj} ${OUTPUT_OPTION}
 
 knini.o: ${obj} 
-	cd lib; ${MAKE} knini.o "CFLAGS=${CFLAGS}" "os=${os}"
+	cd lib; ${MAKE} knini.o "os=${os}" "debug=${debug}"
 
 run: knini-test
 	./$<
