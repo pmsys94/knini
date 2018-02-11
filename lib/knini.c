@@ -1,9 +1,9 @@
 #include "knini.h"
 
-llist getinisec(char* filename){
+llist getinisec(char* filename, int (*listCompareF)(void* key1, void* key2)){
 	FILE* fp = fopen(filename, "r");
 	if (fp == NULL) return NULL;
-	llist secstore = newlist(&nocompare);
+	llist secstore = newlist(listCompareF);
 	if (secstore == NULL){
 		fclose(fp);
 		return NULL;
@@ -27,10 +27,4 @@ llist getinisec(char* filename){
 	if(readline != NULL) free(readline);
 	fclose(fp);
 	return secstore;
-}
-
-
-int nocompare(void* key1, void* key2){
-	if(key1 == key2) return 0;
-	return 0;
 }

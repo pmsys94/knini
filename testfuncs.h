@@ -6,5 +6,6 @@
 #include "lib/knsll/knsll.h"
 
 	void printSections(char* file);
+	int nocompare(void* key1, void* key2);
 
 #endif

@@ -9,10 +9,8 @@
 
 // Begin interface function prototypes
 
-	llist getinisec(char* filename); // returns -1 if there was an error || number of found sctions
+	llist getinisec(char* filename, int (*listCompareF)(void* key1, void* key2)); // returns -1 if there was an error || number of found sctions
 
 // end interface function prototypes
-
-int nocompare(void* key1, void* key2);
 
 #endif

@@ -99,7 +99,7 @@ int rmlist(llist lst){
 
 int hasNext(literator it){
 	if(it == NULL) return 0;
-	return (getNextNode(it->current) != NULL);
+	return (it->current != NULL);
 }
 
 void* getNext(literator it){
