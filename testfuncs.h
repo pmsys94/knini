@@ -7,5 +7,6 @@
 
 	void printSections(char* file);
 	int nocompare(void* key1, void* key2);
+	void printSecKeys(char* file, char* section);
 
 #endif

@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
 			fprintf(stderr, "To less arguments!\n");
 			cmdUsage();
 			return 1;
-		} else if(argc > 3){
+		} else if(argc > 4){
 			fprintf(stderr, "To many arguments!\n");
 			cmdUsage();
 			return 1;
@@ -31,6 +31,14 @@ int main(int argc, char* argv[]){
 #endif
 			if(strcmp(argv[1], "psections\0") == 0){
 				printSections(inifile);
+			} else if(strcmp(argv[1], "pseckeys\0") == 0){
+				if(argc == 3){
+					printSecKeys(inifile, NULL);
+				}else if(strcmp(argv[3], "NULL\0") == 0){
+					printSecKeys(inifile, NULL);
+				} else {
+					printSecKeys(inifile, argv[3]);
+				}
 			} else {
 				fprintf(stderr, "Paramater 1 '%s' was not a valid action!\n", argv[1]);
 				cmdUsage();
@@ -59,6 +67,10 @@ int main(int argc, char* argv[]){
 				printSections(inifile);				
 				break;
 				}
+			case 3: {
+				printSecKeys(inifile, NULL);
+				break;
+				}
 			default: {
 				printf("Input is not a valid menu point!\n");
 				}
@@ -79,13 +91,16 @@ void showMenu(){
 	printf(	"[0] - End Application\n"
 		"[1] - Enter ini file name to operate on it\n"
 		"[2] - Print list of sections\n"
+		"[3] - Print list of key names of a specified section name\n"
 	);
 }
 
 void cmdUsage(){
 	fprintf(stderr, "Usage of testing application:\n"
-			"<app> <action> <ini-file>\n"
-			"Actions are: psections;\n"
+			"<app> <action> <ini-file> [<action-parmater>]\n"
+			"Actions are:\n"
+			"psections - <void>\n"
+			"pseckeys - <section-name> | NULL (as word)\n"
 			"e.g. <app> psections mytest.ini\n"
 	);
 }
