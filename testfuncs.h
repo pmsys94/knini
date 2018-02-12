@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include "lib/knini.h"
-#include "lib/knsll/knsll.h"
+#include "lib/libknsll/knsll.h"
 
 	void printSections(char* file);
 	int nocompare(void* key1, void* key2);

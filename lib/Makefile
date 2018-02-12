@@ -10,7 +10,7 @@ ifdef os
 	OSMAK = -Dos=${os}
 endif
 
-incdir = knsll
+incdir = libknsll
 list = ${incdir}/knsll.o ${incdir}/knsllnode.o
 
 knini: knini.o listobj
@@ -23,7 +23,7 @@ iniparsefuncs.o: iniparsefuncs.c
 	${CC} -c ${CFLAGS} ${OSMAK} $< -o $@
 
 listobj: 
-	cd knsll; ${MAKE} knsll.o "debug=${debug}"
+	cd ${incdir}; ${MAKE} knsll.o "debug=${debug}"
 
 clean:
-	${RM} *.o *.out; cd knsll; ${MAKE} clean
+	${RM} *.o *.out; cd ${incdir}; ${MAKE} clean
