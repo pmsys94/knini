@@ -49,7 +49,7 @@ void* deleteItem(llist lst, void *removeCompData){
 			}
 			setNextNode(node, NULL); // prevent recursive delete
 			rmdata = getNodeData(node);
-			rmnode(node);
+			rmnode(node, 0);
 			node = NULL;
 			(lst->items)--;
 		} else { // not found
@@ -85,13 +85,12 @@ llist newlist(compare_f UseToCompare){
 	return lst;
 }
 
-int rmlist(llist lst){
-	if(lst == NULL) return 1;
+void rmlist(llist lst, int hardDataFree){
+	if(lst == NULL) return;
 	if(lst->items > 0){
-		rmnode(lst->first);
+		rmnode(lst->first, hardDataFree);
 	}
 	free(lst);
-	return 1;
 }
 // -------------------   linked list adt   --------------------------------------
 

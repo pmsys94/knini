@@ -23,7 +23,7 @@ void printSections(char* file){
 		num++;
 	}
 	kill_it(it);
-	rmlist(sections);
+	rmlist(sections, 0);
 	#ifdef DEBUG
 	fprintf(stderr, "[DEBUG] Leaving print sections test\n");
 	#endif
@@ -62,7 +62,7 @@ void printSecKeys(char* file, char* section){
 		num++;
 	}
 	kill_it(it);
-	rmlist(keys);
+	rmlist(keys, 0);
 	#ifdef DEBUG
 	fprintf(stderr, "[DEBUG] Leaving Keys of section print test\n");
 	#endif

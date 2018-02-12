@@ -13,11 +13,12 @@ lnode newnode(void *toSave){
 	return nd;
 }
 
-int rmnode(lnode nd){
+int rmnode(lnode nd, int rmdata){
 	if (nd == NULL) return 0;
 	if(nd->next != NULL){
-		rmnode(nd->next);
+		rmnode(nd->next, rmdata);
 	}
+	if(rmdata) free(nd->data);
 	free(nd);
 	return 1;
 }

@@ -26,7 +26,7 @@
 #ifndef KNSLL_H
 #define KNSLL_H
 
-#define verKNSLL 1.1
+#define verKNSLL 2
 
 	#include <stdio.h>
 	#include "knsllnode.h"
@@ -40,7 +40,7 @@
 	void* searchItem(llist lst, void *searchKey); // search an item and get its stored data back: see deleteItem()
 	
 	llist newlist(compare_f UseToCompare); // constructor of adt: give it a funtion of your client that can compare a search key with the data - it must be like discribed above
-	int rmlist(llist lst); // destructor of adt: it will force any data to delete and only returns sucsess
+	void rmlist(llist lst, int hardDataFree); // destructor of adt: it will force any data nodes to delete (incl. stored data ptr if param. 2 is true)
 	// -------------------   linked list adt   --------------------------------------
 
 	// -------------------   iterator   ---------------------------------------------

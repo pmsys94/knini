@@ -16,7 +16,7 @@ llist getinisec(char* filename, int (*listCompareF)(void* key1, void* key2)){
 			secstr = strndup(secstr, readchars - 2);
 			if(addItem(secstore, secstr) == 0){
 				free(secstr);
-				rmlist(secstore);
+				rmlist(secstore, 1);
 				secstore = NULL;
 				break;
 			}	
@@ -52,7 +52,7 @@ llist getiniseckeys(char* filename, int (*listCompareF)(void* key1, void* key2),
 			keystr = strdup(keystr);
 			if(addItem(keystore, keystr) == 0){
 				free(keystr);
-				rmlist(keystore);
+				rmlist(keystore, 1);
 				keystore = NULL;
 				break;
 			}
