@@ -8,7 +8,7 @@ int readToRelevant(FILE* fp, char** line){
 			for(int i = 0; i < MAX_ENTRY; i++){
 				if(isNewLine(buf[i]) == 1){
 					buf[i] = '\0';
-					(*line) = strdup(buf);
+					(*line) = strndup(buf, i);
 					return i; // end with succsess - return value is count of read chars
 				}
 			}
