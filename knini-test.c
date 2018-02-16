@@ -19,7 +19,7 @@ int main(int argc, char* argv[]){
 			fprintf(stderr, "To less arguments!\n");
 			cmdUsage();
 			return 1;
-		} else if(argc > 4){
+		} else if(argc > 5){
 			fprintf(stderr, "To many arguments!\n");
 			cmdUsage();
 			return 1;
@@ -28,6 +28,9 @@ int main(int argc, char* argv[]){
 #ifdef DEBUG
 			fprintf(stderr, "[DEBUG] argv[1] = %s\n", argv[1]);
 			fprintf(stderr, "[DEBUG] argv[2] = %s\n-> inifile = %s\n", argv[2], inifile);
+			for (int args = 4; args <= argc; args++){
+				fprintf(stderr, "[DEBUG] argv[%d] = %s\n", args-1, argv[args-1]);
+			}
 #endif
 			if(strcmp(argv[1], "psections\0") == 0){
 				printSections(inifile);
@@ -38,6 +41,18 @@ int main(int argc, char* argv[]){
 					printSecKeys(inifile, NULL);
 				} else {
 					printSecKeys(inifile, argv[3]);
+				}
+			} else if(strcmp(argv[1], "pkeyval\0") == 0){
+				if(argc == 3){
+					printKeyVal(inifile, NULL, NULL);
+				} else if(strcmp(argv[3], "NULL\0") == 0){
+					printKeyVal(inifile, NULL, NULL);
+				} else if(argc == 5){
+					printKeyVal(inifile, argv[3], argv[4]);
+				} else {
+					fprintf(stderr, "pkeyval needs Section name and key name!\n");
+					cmdUsage();
+					return 1;
 				}
 			} else {
 				fprintf(stderr, "Paramater 1 '%s' was not a valid action!\n", argv[1]);
@@ -71,6 +86,10 @@ int main(int argc, char* argv[]){
 				printSecKeys(inifile, NULL);
 				break;
 				}
+			case 4: {
+				printKeyVal(inifile, NULL, NULL);
+				break;
+				}
 			default: {
 				printf("Input is not a valid menu point!\n");
 				}
@@ -92,6 +111,7 @@ void showMenu(){
 		"[1] - Enter ini file name to operate on it\n"
 		"[2] - Print list of sections\n"
 		"[3] - Print list of key names of a specified section name\n"
+		"[4] - Print a Value of a key to a given section name\n"
 	);
 }
 
@@ -101,6 +121,7 @@ void cmdUsage(){
 			"Actions are:\n"
 			"psections - <void>\n"
 			"pseckeys - <section-name> | NULL (as word)\n"
+			"pkeyval - (section-name> <key-name>) | NULL (as word)\n"
 			"e.g. <app> psections mytest.ini\n"
 	);
 }

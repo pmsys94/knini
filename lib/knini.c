@@ -49,14 +49,7 @@ llist getiniseckeys(char* filename, int (*listCompareF)(void* key1, void* key2),
 			}
 		}else if(readKeys){
 			char* keystr = strtok(readline, "=");
-			for(int count = 1; count <= MAX_ENTRY; count++){
-				if(*keystr == '\0'){
-					keystr = strdnup(keystr, count);
-					break;
-				} else {
-					keystr++;
-				}
-			}
+			keystr = strdup(keystr);
 			if(addItem(keystore, keystr) == 0){
 				free(keystr);
 				rmlist(keystore, 1);
@@ -87,19 +80,10 @@ char* inireadvalue(char* section, char* key, char* filename){
 				readKeys++;
 			}
 		}else if(readKeys){
-			char** valueptr = NULL;
-			char* keystr = strtok_r(readline, "=", valueptr);
+			char* valueptr = NULL;
+			char* keystr = strtok_r(readline, "=", &valueptr);
 			if(strcmp(key, keystr) == 0){
-				int keychars;
-				for(keychars = 1; keychars < MAX_ENTRY; keychars++){
-					if(*keystr == '\0'){
-						break;
-					} else {
-						keystr++;
-					}
-				}
-				keychars++;
-				valuestr = strndup(*valueptr, readchars - keychars);
+				valuestr = strdup(valueptr);
 				break;
 			}
 		}

@@ -41,14 +41,14 @@ void printSecKeys(char* file, char* section){
 	if(section == NULL){
 		printf("Enter target section name: ");
 		if(scanf("%ms", &section) == 0) fprintf(stderr, "Error reading input for section name\n");
-		printf("Your enter was %s.\n", section);
+		printf("Your enter was \"%s\".\n", section);
 	}
 	llist keys = getiniseckeys(file, &nocompare, section);
 	if(keys == NULL){
 		fprintf(stderr, "[TEST CODE] keys llist is null!!\n");
 		return;
 	}
-	printf("%d keys were read for section %s.\n", getItemCount(keys), section);
+	printf("%d keys were read for section \"%s\".\n", getItemCount(keys), section);
 	unsigned int num = 1;
 	literator it = init_it(keys);
 	if(it == NULL){
@@ -65,5 +65,30 @@ void printSecKeys(char* file, char* section){
 	rmlist(keys, 0);
 	#ifdef DEBUG
 	fprintf(stderr, "[DEBUG] Leaving Keys of section print test\n");
+	#endif
+}
+void printKeyVal(char* file, char* section, char* key){
+	#ifdef DEBUG
+	fprintf(stderr, "[DEBUG] Print Code for getting the value of a Key and section pair out of ini file\n");
+	#endif
+	if(section == NULL){
+		printf("Enter target section name: ");
+		if(scanf("%ms", &section) == 0) fprintf(stderr, "Error reading input for section name\n");
+		printf("Your enter was \"%s\".\n", section);
+	}
+	if(key == NULL){
+		printf("Enter target key name: ");
+		if(scanf("%ms", &key) == 0) fprintf(stderr, "Error reading input for key name\n");
+		printf("Your enter was \"%s\".\n", key);
+	}
+	char* value = inireadvalue(section, key, file);
+	if(value == NULL){
+		fprintf(stderr, "[TEST CODE] Value String is null!!\n");
+		return;
+	}
+	printf("KEY = VALUE\n%s = %s\n", key, value);
+	free(value);
+	#ifdef DEBUG
+	fprintf(stderr, "[DEBUG] Leaving Value of key print test\n");
 	#endif
 }
