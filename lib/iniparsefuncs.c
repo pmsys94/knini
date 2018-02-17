@@ -23,3 +23,8 @@ int isNewLine(char c){
 	if((c == '\n') || (c == '\r')) return 1;
 	return 0;
 }
+
+int namecmp(void* key1, void* key2){
+	if((key1 == NULL) || (key2 == NULL)) return 1;
+	return strcmp((char*)key1, (char*)key2);
+}

@@ -94,3 +94,35 @@ char* inireadvalue(char* section, char* key, char* filename){
 	fclose(fp);
 	return valuestr;
 }
+
+int iniwritevalue(char* section, char* key, char* value, char* filename){
+	llist checklist = NULL;
+	char* checkname = NULL;
+	int extists = 0; // -2 (0 secs - ), -1 (both no), 0 (sec yes, key no), 1 (both yes)
+	if((section == NULL) || (key == NULL) || (value == NULL) || (filename == NULL)) return 0;
+	// Check if section already exists
+	checklist = getinisec(filename, &namecmp);
+	if(checklist == NULL){
+		return 0; // ? offen mi r ha nicht funktioniert -datei nicht da?
+	} else if(getItemCount(checklist) != 0){
+		checkname = searchItem(checklist, section);
+	} else {
+		return 0;
+	}
+	rmlist(checklist, 1);
+	checklist = NULL;
+	if(checkname == NULL){
+		exists--;
+	} else{
+		exists++;
+		checkname = NULL;
+	}
+	// if section was found check if key is existing
+	if(exists == 1){
+		checklist = getiniseckeys(filename, &namecmp, section);
+		checkname = searchItem(checklist, key);
+		rmlist(checklist, 1);
+		
+	}
+	
+}
